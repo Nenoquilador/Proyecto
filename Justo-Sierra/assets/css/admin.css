@@ -1,0 +1,254 @@
+/* ---------------------------------
+  ESTILOS DEL PANEL DE ADMINISTRACIÓN (CON PALETA JS)
+  (assets/css/admin.css)
+  ---------------------------------
+*/
+
+/* Layout principal del Dashboard de Admin */
+.dashboard-layout {
+    display: flex;
+    gap: 30px;
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* --- Barra Superior (Header) --- */
+.admin-nav {
+    background-color: var(--color-js-rojo-principal); /* Rojo Principal */
+    color: var(--color-blanco);
+    padding: 12px 30px; /* Ajuste de padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra sutil */
+}
+.admin-nav h2 {
+    color: var(--color-blanco);
+    margin: 0;
+    font-size: 1.3rem; /* Tamaño consistente */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.admin-nav h2 i {
+    font-size: 1.1rem; /* Icono ligeramente más pequeño */
+}
+/* Botón Logout usa el estilo global .btn-logout definido en style.css */
+
+
+/* --- Barra Lateral (Sidebar) --- */
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: var(--color-blanco);
+    padding: 25px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    height: fit-content;
+}
+
+.sidebar h3 { /* Mensaje de Bienvenida */
+    font-size: 1.1rem;
+    color: var(--color-texto-principal);
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-js-rojo-principal); /* Línea roja */
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: var(--color-texto-secundario);
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+.sidebar li a i {
+    width: 18px;
+    text-align: center;
+    color: var(--color-texto-secundario); /* Icono gris por defecto */
+    transition: color 0.2s;
+}
+
+.sidebar li a:hover {
+    background-color: #f8f9fa; /* Fondo gris muy claro al pasar */
+    color: var(--color-js-rojo-principal); /* Texto rojo */
+}
+.sidebar li a:hover i {
+    color: var(--color-js-rojo-principal); /* Icono rojo */
+}
+
+/* Estilo para el enlace de la página activa */
+.sidebar li a.active {
+    background-color: var(--color-js-rojo-principal); /* Fondo Rojo Principal */
+    color: var(--color-blanco); /* Texto blanco */
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(230, 0, 19, 0.2); /* Sombra roja sutil */
+}
+.sidebar li a.active i {
+    color: var(--color-blanco); /* Icono blanco */
+}
+
+
+/* --- Contenido Principal --- */
+.main-content {
+    flex-grow: 1;
+    background-color: var(--color-blanco);
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.main-content h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.8rem;
+    color: var(--color-js-rojo-principal); /* Título Rojo Principal */
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-js-rojo-principal); /* Línea Roja */
+}
+.main-content h2 i {
+    font-size: 1.5rem;
+    color: var(--color-js-rojo-principal); /* Icono Rojo Principal */
+}
+.main-content p {
+    color: var(--color-texto-secundario);
+    font-size: 1rem;
+    margin-bottom: 25px;
+}
+
+
+/* Lista de Empresas Pendientes */
+.pending-companies-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.company-card {
+    background-color: #fff;
+    border: 1px solid var(--color-borde);
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.3s ease, border-left 0.3s ease;
+    border-left: 5px solid transparent; /* Borde izquierdo inicial transparente */
+}
+.company-card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid var(--color-js-amarillo); /* Borde amarillo al pasar */
+}
+
+.company-info strong { /* Nombre de la empresa */
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-texto-principal);
+    margin-bottom: 5px;
+}
+.company-info small { /* Email y Fecha */
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: 3px;
+    line-height: 1.4;
+}
+.company-info small i {
+    margin-right: 6px;
+    color: var(--color-js-rojo-secundario); /* Iconos en Rojo Secundario */
+    width: 14px;
+    text-align: center;
+}
+
+.company-actions a {
+    margin-left: 10px;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+}
+
+/* Botón Aprobar (Verde estándar o Amarillo JS) */
+.btn-aprobar {
+    background-color: var(--color-exito); /* Verde estándar */
+    /* background-color: var(--color-js-amarillo); */ /* Alternativa: Amarillo JS */
+    /* color: var(--color-texto-principal); */ /* Si usas amarillo */
+    color: white;
+}
+.btn-aprobar:hover {
+    background-color: #218838; /* Verde más oscuro */
+    /* background-color: #e0b400; */ /* Amarillo más oscuro */
+    box-shadow: 0 2px 5px rgba(0,0,0, 0.2);
+}
+
+/* Botón Rechazar (Rojo estándar o Rojo Secundario JS) */
+.btn-rechazar {
+    background-color: var(--color-error); /* Rojo estándar */
+    /* background-color: var(--color-js-rojo-secundario); */ /* Alternativa: Rojo Secundario JS */
+    color: white;
+}
+.btn-rechazar:hover {
+    background-color: #c82333; /* Rojo más oscuro */
+    /* background-color: var(--color-js-rojo-principal); */ /* Alternativa: Rojo Principal JS */
+    box-shadow: 0 2px 5px rgba(0,0,0, 0.2);
+}
+
+/* Mensaje cuando no hay pendientes */
+.mensaje.exito {
+    background-color: #e8f5e9;
+    color: #388e3c;
+    border: 1px solid #c8e6c9;
+    font-weight: 500;
+    text-align: left;
+}
+.mensaje.exito strong {
+    font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .company-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .company-actions {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
