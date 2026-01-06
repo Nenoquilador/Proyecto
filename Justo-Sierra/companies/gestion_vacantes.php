@@ -135,7 +135,8 @@ try {
                             </span>
                             
                             <div class="table-actions-group">
-                                <a href="ver_postulaciones.php?id=<?php echo $vacante['id_vacante']; ?>" 
+                                <!-- CORRECCIÓN AQUÍ: cambiar "id" por "id_vacante" -->
+                                <a href="ver_postulaciones.php?id_vacante=<?php echo $vacante['id_vacante']; ?>" 
                                    class="boton-principal-sm" style="background: #2980b9;">
                                     <i class="fas fa-eye"></i> Ver Postulaciones
                                 </a>
@@ -146,7 +147,8 @@ try {
                                 </a>
                                 
                                 <?php if ($vacante['estado'] === 'abierta'): ?>
-                                    <a href="procesar_empresa.php?action=cerrar&id=<?php echo $vacante['id_vacante']; ?>" 
+                                    <!-- También corregido aquí para mantener consistencia -->
+                                    <a href="procesar_empresa.php?action=cerrar&id_vacante=<?php echo $vacante['id_vacante']; ?>" 
                                        class="btn-secundario-form" 
                                        style="padding: 8px 15px; font-size: 0.9rem; border-color: var(--color-error); color: var(--color-error);" 
                                        onclick="return confirm('¿Está seguro de que desea cerrar esta vacante?');">
