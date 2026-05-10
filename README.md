@@ -1,42 +1,37 @@
-============================================================
-SISTEMA DE GESTIÓN UJS - CREDENCIALES DE ACCESO (PROYECTO)
-============================================================
+# 🔐 Credenciales de Acceso — Sistema de Gestión UJS
 
-Este archivo contiene los accesos configurados para las diferentes
-áreas del sistema de Bolsa de Trabajo y Servicios Escolares.
+> Accesos configurados para las diferentes áreas del sistema de **Bolsa de Trabajo y Servicios Escolares**.
+> Actualizado el 10 de mayo de 2026.
 
-------------------------------------------------------------
-1. ADMINISTRADORES
-------------------------------------------------------------
+---
 
-A) ÁREA DE VINCULACIÓN (Control de Empresas y Trámites)
-   - Email: admin@ujsierra.com.mx
-   - Password: password
+## 👤 Administradores
 
-B) SERVICIOS ESCOLARES (Control de Alumnos y Expedientes)
-   - Email: escolares@ujsierra.com.mx
-   - Password: password
+| Área | Email | Password |
+|------|-------|----------|
+| Vinculación (Empresas y Trámites) | admin@ujsierra.com.mx | password |
+| Servicios Escolares (Alumnos y Expedientes) | escolares@ujsierra.com.mx | password |
 
-------------------------------------------------------------
-2. PERFILES DE EMPRESA
-------------------------------------------------------------
+---
 
-EMPRESA: Tech Solutions Innova
-   - Email: techsolutions.innova@ejemplo.com
-   - Password: 123456
+## 🏢 Perfiles de Empresa
 
-------------------------------------------------------------
-3. PERFILES DE ALUMNO (EJEMPLO)
-------------------------------------------------------------
+| Empresa | Email | Password |
+|---------|-------|----------|
+| Tech Solutions Innova | techsolutions.innova@ejemplo.com | 123456 |
 
-ALUMNO DE PRUEBA
-   - Email: ernestogomez@ujsierra.com.mx
-   - Password: neto0427
+---
 
-------------------------------------------------------------
-NOTAS TÉCNICAS:
-- Las contraseñas en la base de datos están encriptadas.
-- El sistema utiliza PHP con PDO y validación de roles (RBAC).
+## 🎓 Perfiles de Alumno (Ejemplo)
+
+| Alumno | Email | Password |
+|--------|-------|----------|
+| Alumno de Prueba | ernestogomez@ujsierra.com.mx | neto0427 |
+
+---
+
+## 📝 Notas Técnicas
+
+- Las contraseñas en la base de datos están **encriptadas**.
+- El sistema utiliza **PHP con PDO** y validación de roles (**RBAC**).
 - No compartir datos reales en repositorios públicos.
-------------------------------------------------------------
-Actualizado el 10 de mayo de 2026
