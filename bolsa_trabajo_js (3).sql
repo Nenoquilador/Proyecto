@@ -167,6 +167,7 @@ CREATE TABLE `vacantes` (
   `tipo_contrato` enum('tiempo_completo','medio_tiempo','practicas','temporal','proyecto') NOT NULL,
   `modalidad` enum('presencial','remoto','hibrido') NOT NULL,
   `salario_ofrecido` decimal(10,2) DEFAULT NULL,
+  `carrera_afin` varchar(100) DEFAULT NULL,
   `ubicacion` varchar(255) DEFAULT NULL,
   `estado` enum('abierta','cerrada') DEFAULT 'abierta',
   `fecha_publicacion` timestamp NOT NULL DEFAULT current_timestamp()
@@ -280,8 +281,8 @@ ALTER TABLE `vacantes`
 -- Filtros para la tabla `postulaciones`
 --
 ALTER TABLE `postulaciones`
-  ADD CONSTRAINT `postulaciones_ibfk_1` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id_alumno`),
-  ADD CONSTRAINT `postulaciones_ibfk_2` FOREIGN KEY (`id_vacante`) REFERENCES `vacantes` (`id_vacante`);
+  ADD CONSTRAINT `postulaciones_ibfk_1` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id_alumno`) ON DELETE CASCADE,
+  ADD CONSTRAINT `postulaciones_ibfk_2` FOREIGN KEY (`id_vacante`) REFERENCES `vacantes` (`id_vacante`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `solicitudes_sspp`
@@ -293,7 +294,7 @@ ALTER TABLE `solicitudes_sspp`
 -- Filtros para la tabla `vacantes`
 --
 ALTER TABLE `vacantes`
-  ADD CONSTRAINT `vacantes_ibfk_1` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`);
+  ADD CONSTRAINT `vacantes_ibfk_1` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

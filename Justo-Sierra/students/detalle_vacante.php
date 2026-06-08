@@ -190,8 +190,8 @@ function formatear_tag($texto) {
                             </button>
                             <p style="color: var(--color-exito); margin-top: 10px; font-weight: 600;">Ya enviaste tu postulación a esta vacante.</p>
                         <?php else: ?>
-                            <a href="procesar_postulacion.php?id=<?php echo $id_vacante; ?>" class="boton-principal" style="padding: 12px 30px;">
-                                <i class="fas fa-paper-plane"></i> Postular Ahora
+                            <a href="#" id="btn-postular" data-id="<?php echo $id_vacante; ?>" class="boton-principal" style="padding: 12px 30px;">
+                                <i class="fas fa-paper-plane"></i> <span id="text-postular">Postular Ahora</span>
                             </a>
                         <?php endif; ?>
                     </div>
@@ -240,5 +240,59 @@ function formatear_tag($texto) {
         <?php endif; ?>
     </div>
 
+    <script>
+        const btnPostular = document.getElementById('btn-postular');
+        if(btnPostular) {
+            btnPostular.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const idVacante = this.getAttribute('data-id');
+                const btnIcon = this.querySelector('i');
+                const btnText = document.getElementById('text-postular');
+                
+                // UI de carga
+                btnPostular.style.opacity = '0.7';
+                btnPostular.style.pointerEvents = 'none';
+                btnIcon.className = 'fas fa-spinner fa-spin';
+                btnText.textContent = 'Enviando...';
+                
+                fetch('procesar_postulacion.php?id=' + idVacante, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.exito) {
+                        btnPostular.style.backgroundColor = 'var(--color-exito)';
+                        btnIcon.className = 'fas fa-check';
+                        btnText.textContent = '¡Postulado!';
+                        
+                        // Añadir nota de éxito debajo
+                        const pNota = document.createElement('p');
+                        pNota.style.color = 'var(--color-exito)';
+                        pNota.style.marginTop = '10px';
+                        pNota.style.fontWeight = '600';
+                        pNota.textContent = 'Ya enviaste tu postulación a esta vacante.';
+                        btnPostular.parentNode.appendChild(pNota);
+                    } else {
+                        btnPostular.style.opacity = '1';
+                        btnPostular.style.pointerEvents = 'auto';
+                        btnPostular.style.backgroundColor = 'var(--color-error)';
+                        btnIcon.className = 'fas fa-times';
+                        btnText.textContent = 'Error: Reintenta';
+                        alert(data.mensaje);
+                    }
+                })
+                .catch(error => {
+                    btnPostular.style.opacity = '1';
+                    btnPostular.style.pointerEvents = 'auto';
+                    btnIcon.className = 'fas fa-exclamation-triangle';
+                    btnText.textContent = 'Error de conexión';
+                });
+            });
+        }
+    </script>
 </body>
 </html>

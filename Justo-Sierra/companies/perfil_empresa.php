@@ -17,7 +17,7 @@ $id_empresa = $_SESSION['id_empresa'];
 
 // CONSULTAR DATOS DE LA EMPRESA
 try {
-    $sql = "SELECT id_empresa, nombre_empresa, email_contacto, rfc, descripcion, sitio_web 
+    $sql = "SELECT id_empresa, nombre_empresa, email_contacto, rfc, descripcion, sitio_web, logo_url 
             FROM Empresas 
             WHERE id_empresa = :id_empresa";
     
@@ -123,9 +123,18 @@ $enlace_edicion = "procesar_empresa.php?action=editar_perfil";
                     <div style="padding: 30px;">
                         
                         <div class="profile-section-title">NOMBRE DE LA EMPRESA</div>
-                        <h2 style="font-size: 1.5rem; margin-top: 5px; margin-bottom: 20px; color: var(--color-texto-principal);">
-                            <?php echo htmlspecialchars($empresa['nombre_empresa'] ?? 'N/A'); ?>
-                        </h2>
+                        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                            <?php if (!empty($empresa['logo_url'])): ?>
+                                <img src="../<?php echo htmlspecialchars($empresa['logo_url']); ?>" alt="Logo Empresa" style="max-width: 100px; max-height: 100px; border-radius: 8px; border: 1px solid #eee;">
+                            <?php else: ?>
+                                <div style="width: 80px; height: 80px; background-color: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #94a3b8;">
+                                    <i class="fas fa-building fa-2x"></i>
+                                </div>
+                            <?php endif; ?>
+                            <h2 style="font-size: 1.5rem; margin: 0; color: var(--color-texto-principal);">
+                                <?php echo htmlspecialchars($empresa['nombre_empresa'] ?? 'N/A'); ?>
+                            </h2>
+                        </div>
                         
                         <div class="profile-data-row">
                             <div class="profile-data-column">

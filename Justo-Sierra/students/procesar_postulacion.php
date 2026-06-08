@@ -21,6 +21,10 @@ $id_vacante = $_GET['id'] ?? null;
 
 // Validar ID de la vacante
 if (!$id_vacante || !is_numeric($id_vacante)) {
+    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        echo json_encode(['exito' => false, 'mensaje' => 'ID de vacante inválido']);
+        exit();
+    }
     header("Location: dashboard.php");
     exit();
 }
@@ -49,14 +53,25 @@ try {
         $stmt_insert->bindParam(':id_alumno', $id_alumno, PDO::PARAM_INT);
         $stmt_insert->bindParam(':id_vacante', $id_vacante, PDO::PARAM_INT);
         $stmt_insert->execute();
+    } // Cierra el else
 
-        // 4. Redirigir al dashboard
-        header("refresh:3;url=dashboard.php");
+    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        echo json_encode(['exito' => true, 'mensaje' => $mensaje]);
+        exit();
     }
+    
+    // 4. Redirigir al dashboard si no es AJAX
+    header("refresh:3;url=dashboard.php");
 
 } catch (PDOException $e) {
     $mensaje = "Error de base de datos al procesar la postulación: " . $e->getMessage();
     $exito = false;
+    
+    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        echo json_encode(['exito' => false, 'mensaje' => $mensaje]);
+        exit();
+    }
+    
     // Si falla, redirigimos más lento o nos quedamos para mostrar el error
     header("refresh:5;url=detalle_vacante.php?id=" . $id_vacante);
 }

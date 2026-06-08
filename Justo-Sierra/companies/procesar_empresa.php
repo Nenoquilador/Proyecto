@@ -37,6 +37,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['actualizar_perfil'])) 
         $error = true;
     } else {
         try {
+            // Manejo del Logo
+            $logo_query = "";
+            if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
+                $dir_logos = '../assets/img/logos_empresas/';
+                if (!file_exists($dir_logos)) {
+                    mkdir($dir_logos, 0777, true);
+                }
+                $nombre_logo = time() . '_' . basename($_FILES['logo']['name']);
+                $ruta_destino = $dir_logos . $nombre_logo;
+                $ruta_relativa = 'assets/img/logos_empresas/' . $nombre_logo;
+                
+                if (move_uploaded_file($_FILES['logo']['tmp_name'], $ruta_destino)) {
+                    // Actualizamos la ruta del logo
+                    $logo_query = ", logo_url = :logo_url";
+                }
+            }
+
             // Consulta para actualizar los datos de la empresa
             $sql = "UPDATE Empresas SET 
                         nombre_empresa = :nombre, 
@@ -44,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['actualizar_perfil'])) 
                         rfc = :rfc, 
                         sitio_web = :sitio_web, 
                         descripcion = :descripcion
+                        $logo_query
                     WHERE id_empresa = :id_empresa";
             
             $stmt = $conexion->prepare($sql);
@@ -54,6 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['actualizar_perfil'])) 
             $stmt->bindParam(':sitio_web', $sitio_web, PDO::PARAM_STR);
             $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
             $stmt->bindParam(':id_empresa', $id_empresa, PDO::PARAM_INT);
+            if ($logo_query !== "") {
+                $stmt->bindParam(':logo_url', $ruta_relativa, PDO::PARAM_STR);
+            }
 
             $stmt->execute();
             
@@ -112,7 +133,7 @@ try {
             </div>
         <?php endif; ?>
 
-        <form action="procesar_empresa.php" method="POST">
+        <form action="procesar_empresa.php" method="POST" enctype="multipart/form-data">
             
             <div class="mb-3">
                 <label for="nombre">Nombre de la Empresa:</label>
@@ -136,6 +157,11 @@ try {
                 <label for="sitio_web">Sitio Web (URL completa):</label>
                 <input type="text" id="sitio_web" name="sitio_web" 
                        value="<?php echo htmlspecialchars($datos_empresa['sitio_web'] ?? ''); ?>">
+            </div>
+
+            <div class="mb-3">
+                <label for="logo">Logotipo de la Empresa (PNG/JPG):</label>
+                <input type="file" id="logo" name="logo" accept="image/png, image/jpeg" style="padding: 10px; background: white; border-radius: 5px; border: 1px solid #ddd; width: 100%;">
             </div>
 
             <div class="mb-3">

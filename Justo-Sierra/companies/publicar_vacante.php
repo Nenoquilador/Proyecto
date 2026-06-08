@@ -37,7 +37,7 @@ $datos_vacante = null;
 if ($id_vacante) {
     try {
         // Cargar los datos de la vacante, verificando que pertenezca a la empresa logueada
-        $sql = "SELECT titulo, descripcion, tipo_contrato, modalidad, ubicacion, salario_ofrecido 
+        $sql = "SELECT titulo, descripcion, tipo_contrato, modalidad, ubicacion, salario_ofrecido, carrera_afin 
                 FROM Vacantes 
                 WHERE id_vacante = :id_vacante AND id_empresa = :id_empresa";
         
@@ -67,10 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['publicar'])) {
     $modalidad = $_POST['modalidad'] ?? ''; // El campo en el formulario es 'modalidad'
     $ubicacion = trim($_POST['ubicacion'] ?? '');
     $tipo_contrato = $_POST['tipo_contrato'] ?? ''; // El campo de tu BD es 'tipo_contrato'
+    $carrera_afin = $_POST['carrera_afin'] ?? '';
     
     // Asume que si el salario se quitó del formulario, solo usaremos las columnas obligatorias
     
-    if (empty($titulo) || empty($descripcion) || empty($tipo_contrato) || empty($modalidad) || empty($ubicacion)) {
+    if (empty($titulo) || empty($descripcion) || empty($tipo_contrato) || empty($modalidad) || empty($ubicacion) || empty($carrera_afin)) {
         $mensaje = "Error: Faltan campos obligatorios.";
         $error = true;
     } else {
@@ -82,7 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['publicar'])) {
                             descripcion = :descripcion, 
                             tipo_contrato = :tipo_contrato, 
                             modalidad = :modalidad, 
-                            ubicacion = :ubicacion 
+                            ubicacion = :ubicacion,
+                            carrera_afin = :carrera_afin
                         WHERE id_vacante = :id_vacante AND id_empresa = :id_empresa";
                 
                 $stmt = $conexion->prepare($sql);
@@ -90,8 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['publicar'])) {
                 $mensaje = "¡Vacante actualizada con éxito! Serás redirigido en 3 segundos.";
             } else {
                 // MODO CREACIÓN (INSERT)
-                $sql = "INSERT INTO Vacantes (id_empresa, titulo, descripcion, tipo_contrato, modalidad, ubicacion, estado) 
-                        VALUES (:id_empresa, :titulo, :descripcion, :tipo_contrato, :modalidad, :ubicacion, 'abierta')";
+                $sql = "INSERT INTO Vacantes (id_empresa, titulo, descripcion, tipo_contrato, modalidad, ubicacion, carrera_afin, estado) 
+                        VALUES (:id_empresa, :titulo, :descripcion, :tipo_contrato, :modalidad, :ubicacion, :carrera_afin, 'abierta')";
                 
                 $stmt = $conexion->prepare($sql);
                 $mensaje = "¡Vacante publicada con éxito! Serás redirigido en 3 segundos.";
@@ -104,6 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['publicar'])) {
             $stmt->bindParam(':tipo_contrato', $tipo_contrato, PDO::PARAM_STR); // Usamos el nombre de columna de tu BD
             $stmt->bindParam(':modalidad', $modalidad, PDO::PARAM_STR); // Usamos el nombre de columna de tu BD
             $stmt->bindParam(':ubicacion', $ubicacion, PDO::PARAM_STR);
+            $stmt->bindParam(':carrera_afin', $carrera_afin, PDO::PARAM_STR);
 
             $stmt->execute();
             
@@ -159,6 +162,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['publicar'])) {
                     <option value="medio_tiempo" <?php echo $selected_tc === 'medio_tiempo' ? 'selected' : ''; ?>>Medio Tiempo</option>
                     <option value="practicas" <?php echo $selected_tc === 'practicas' ? 'selected' : ''; ?>>Prácticas / Pasantía</option>
                     <option value="por_proyecto" <?php echo $selected_tc === 'por_proyecto' ? 'selected' : ''; ?>>Por Proyecto</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="carrera_afin">Carrera Afín (Requisito):</label>
+                <select id="carrera_afin" name="carrera_afin" required>
+                    <?php 
+                    $selected_ca = $datos_vacante['carrera_afin'] ?? ''; 
+                    $carreras_ejemplo = [
+                        'administracion' => 'Administración', 'derecho' => 'Derecho', 'contaduria' => 'Contaduría',
+                        'sistemas' => 'Ing. en Sistemas Computacionales', 'psicologia' => 'Psicología',
+                        'diseno_grafico' => 'Diseño Gráfico', 'arquitectura' => 'Arquitectura', 'mercadotecnia' => 'Mercadotecnia'
+                    ];
+                    ?>
+                    <option value="">-- Seleccione Carrera --</option>
+                    <?php foreach ($carreras_ejemplo as $val => $label): ?>
+                        <option value="<?php echo $val; ?>" <?php echo $selected_ca === $val ? 'selected' : ''; ?>><?php echo $label; ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
 
