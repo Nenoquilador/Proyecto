@@ -33,9 +33,12 @@ try {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { 
-            --js-blue: #2563EB;
-            --js-blue-dark: #1E3A8A;
-            --js-blue-light: #EFF6FF;
+            --js-primary: #E60013;
+            --js-secondary: #FCC800;
+            --js-accent: #EA0029;
+            --js-primary-dark: #C40010;
+            --js-primary-light: #FFF1F2;
+            --js-gradient: linear-gradient(60deg, #E60013 0%, #FCC800 65%, #EA0029 100%);
             --bg-light: #F8FAFC; 
             --text-main: #0F172A; 
             --text-muted: #64748B; 
@@ -48,7 +51,7 @@ try {
         
         /* HEADER */
         .top-header { background: white; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #E2E8F0; }
-        .brand-box { display: flex; align-items: center; gap: 12px; color: var(--js-blue); }
+        .brand-box { display: flex; align-items: center; gap: 12px; color: var(--js-primary); }
         .brand-box h1 { margin: 0; font-family: 'Montserrat', sans-serif; font-size: 1.3rem; letter-spacing: -0.5px; }
         .btn-exit { background: #FEE2E2; color: #DC2626; padding: 8px 16px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
         .btn-exit:hover { background: #DC2626; color: white; }
@@ -63,14 +66,14 @@ try {
         .menu-group { margin-bottom: 25px; }
         .menu-title { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; padding-left: 15px; }
         .nav-link { display: flex; align-items: center; gap: 12px; padding: 12px 15px; text-decoration: none; color: var(--text-muted); border-radius: 10px; font-weight: 500; transition: all 0.2s; margin-bottom: 5px; font-size: 0.95rem; }
-        .nav-link:hover { background: var(--js-blue-light); color: var(--js-blue); transform: translateX(5px); }
-        .nav-link.active { background: var(--js-blue); color: white; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2); }
+        .nav-link:hover { background: var(--js-primary-light); color: var(--js-primary); transform: translateX(5px); }
+        .nav-link.active { background: var(--js-gradient); color: white; box-shadow: 0 4px 6px -1px rgba(230, 0, 19, 0.2); }
         
         /* MAIN CONTENT */
         .main-container { flex: 1; padding: 40px; max-width: 1200px; margin: 0 auto; width: 100%; }
         
         /* HERO BANNER */
-        .welcome-hero { background: linear-gradient(135deg, var(--js-blue-dark) 0%, var(--js-blue) 100%); border-radius: 20px; padding: 40px; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
+        .welcome-hero { background: var(--js-gradient); border-radius: 20px; padding: 40px; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
         .welcome-hero::after { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; }
         .welcome-text { position: relative; z-index: 1; max-width: 600px; }
         .welcome-text h2 { margin: 0 0 10px 0; font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; }
@@ -85,15 +88,15 @@ try {
         .card-info h4 { margin: 0; color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
         .card-info .count { font-size: 2.2rem; font-weight: 800; display: block; margin-top: 5px; color: var(--text-main); font-family: 'Montserrat', sans-serif; }
         
-        .stat-card.blue .icon-wrap { background: var(--js-blue-light); color: var(--js-blue); }
+        .stat-card.blue .icon-wrap { background: var(--js-primary-light); color: var(--js-primary); }
         .stat-card.green .icon-wrap { background: #ECFDF5; color: #10B981; }
 
         /* ACCIONES RÁPIDAS */
         .section-title { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; margin-bottom: 20px; color: var(--text-main); }
         .actions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .action-card { background: white; border: 1px solid #E2E8F0; border-radius: 16px; padding: 25px; text-decoration: none; color: var(--text-main); display: flex; flex-direction: column; gap: 15px; transition: all 0.2s ease; }
-        .action-card:hover { border-color: var(--js-blue); background: var(--js-blue-light); box-shadow: var(--shadow-sm); }
-        .action-card .action-icon { width: 45px; height: 45px; background: var(--bg-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--js-blue); }
+        .action-card:hover { border-color: var(--js-primary); background: var(--js-primary-light); box-shadow: var(--shadow-sm); }
+        .action-card .action-icon { width: 45px; height: 45px; background: var(--bg-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--js-primary); }
         .action-card:hover .action-icon { background: white; }
         .action-card h4 { margin: 0; font-size: 1.05rem; font-family: 'Montserrat', sans-serif; }
         .action-card p { margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.4; }
@@ -118,9 +121,9 @@ try {
     <div class="admin-wrapper">
         <aside class="sidebar">
             <div class="sidebar-profile">
-                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($nombre_admin); ?>&background=2563EB&color=fff&bold=true" alt="Perfil">
+                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($nombre_admin); ?>&background=E60013&color=fff&bold=true" alt="Perfil">
                 <h3><?php echo htmlspecialchars($nombre_admin); ?></h3>
-                <small style="color: var(--js-blue); font-weight: 600; font-size: 0.8rem;">Administrador Estudiantil</small>
+                <small style="color: var(--js-primary); font-weight: 600; font-size: 0.8rem;">Administrador Estudiantil</small>
             </div>
             <nav>
                 <div class="menu-group">

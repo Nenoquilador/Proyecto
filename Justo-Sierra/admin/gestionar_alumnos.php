@@ -46,8 +46,12 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     <style>
         :root { 
-            --js-blue: #3B82F6; 
-            --js-blue-hover: #2563EB; 
+            --js-primary: #E60013;
+            --js-secondary: #FCC800;
+            --js-accent: #EA0029;
+            --js-primary-hover: #C40010;
+            --js-primary-light: #FFF1F2;
+            --js-gradient: linear-gradient(60deg, #E60013 0%, #FCC800 65%, #EA0029 100%);
             --bg-light: #F8FAFC; 
             --text-main: #1E293B; 
             --text-muted: #64748B; 
@@ -57,7 +61,7 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         body { background-color: var(--bg-light); font-family: 'Roboto', sans-serif; margin: 0; color: var(--text-main); }
 
         .top-header { background: white; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1); position: sticky; top: 0; z-index: 100; }
-        .brand-box { display: flex; align-items: center; gap: 12px; color: var(--js-blue); }
+        .brand-box { display: flex; align-items: center; gap: 12px; color: var(--js-primary); }
         .brand-box h1 { margin: 0; font-family: 'Montserrat', sans-serif; font-size: 1.3rem; }
         .btn-exit { background: #FEE2E2; color: #E60013; padding: 8px 16px; border-radius: 6px; font-weight: 600; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .btn-exit:hover { background: #E60013; color: white; }
@@ -71,18 +75,18 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         .menu-group { margin-bottom: 25px; }
         .menu-title { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; padding-left: 10px; }
         .nav-link { display: flex; align-items: center; gap: 12px; padding: 12px 15px; text-decoration: none; color: var(--text-muted); border-radius: 8px; font-weight: 500; transition: 0.2s; margin-bottom: 5px; }
-        .nav-link:hover { background: #EFF6FF; color: var(--js-blue); }
-        .nav-link.active { background: var(--js-blue); color: white; }
+        .nav-link:hover { background: var(--js-primary-light); color: var(--js-primary); }
+        .nav-link.active { background: var(--js-gradient); color: white; }
 
         .main-container { flex: 1; padding: 40px; max-width: 1200px; margin: 0 auto; width: 100%; }
         
         .search-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 30px; }
         .grid-alumnos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .student-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 5px solid var(--js-blue); transition: 0.3s; display: flex; flex-direction: column; }
+        .student-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 5px solid var(--js-primary); transition: 0.3s; display: flex; flex-direction: column; }
         .student-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
         
         .btn-view { background: #F1F5F9; color: #1E293B; padding: 8px 15px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; display: inline-block; margin-top: auto; align-self: flex-start; transition: 0.2s; }
-        .btn-view:hover { background: var(--js-blue); color: white; }
+        .btn-view:hover { background: var(--js-primary); color: white; }
     </style>
 </head>
 <body>
@@ -103,7 +107,7 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="admin-wrapper">
         <aside class="sidebar">
             <div class="sidebar-profile">
-                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($nombre_admin); ?>&background=3B82F6&color=fff" alt="Perfil">
+                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($nombre_admin); ?>&background=E60013&color=fff" alt="Perfil">
                 <h3><?php echo htmlspecialchars($nombre_admin); ?></h3>
                 <small style="color: var(--text-muted);">Servicios Escolares</small>
             </div>
@@ -134,7 +138,7 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php endforeach; ?>
                     </select>
                     
-                    <button type="submit" style="background: var(--js-blue); color: white; border: none; padding: 0 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s;">
+                    <button type="submit" style="background: var(--js-primary); color: white; border: none; padding: 0 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s;">
                         <i class="fas fa-search"></i> Buscar
                     </button>
                 </form>
@@ -155,7 +159,7 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <div style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px;">
                                 <i class="fas fa-id-card" style="width: 15px;"></i> <?php echo htmlspecialchars($a['matricula']); ?>
                             </div>
-                            <div style="color: var(--js-blue); font-weight: 500; font-size: 0.85rem; margin-bottom: 15px;">
+                            <div style="color: var(--js-primary); font-weight: 500; font-size: 0.85rem; margin-bottom: 15px;">
                                 <i class="fas fa-graduation-cap" style="width: 15px;"></i> <?php echo htmlspecialchars($a['carrera']); ?>
                             </div>
                             

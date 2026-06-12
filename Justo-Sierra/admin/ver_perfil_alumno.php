@@ -64,9 +64,10 @@ try {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { 
-            /* Colores dinámicos dependiendo del admin */
-            --js-theme: <?php echo ($tipo_admin === 'alumnos') ? '#3B82F6' : '#E60013'; ?>; 
-            --js-theme-hover: <?php echo ($tipo_admin === 'alumnos') ? '#2563EB' : '#C40010'; ?>; 
+            /* Ambos admins ahora usan la paleta oficial (Rojo/Amarillo) */
+            --js-theme: #E60013; 
+            --js-theme-hover: #C40010;
+            --js-gradient: linear-gradient(60deg, #E60013 0%, #FCC800 65%, #EA0029 100%);
             --bg-light: #F8FAFC; 
             --text-main: #1E293B; 
             --text-muted: #64748B; 
@@ -89,12 +90,12 @@ try {
         .menu-group { margin-bottom: 25px; }
         .menu-title { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; padding-left: 10px; }
         .nav-link { display: flex; align-items: center; gap: 12px; padding: 12px 15px; text-decoration: none; color: var(--text-muted); border-radius: 8px; font-weight: 500; transition: 0.2s; margin-bottom: 5px; }
-        .nav-link:hover { background: <?php echo ($tipo_admin === 'alumnos') ? '#EFF6FF' : '#FFF1F2'; ?>; color: var(--js-theme); }
-        .nav-link.active { background: var(--js-theme); color: white; }
+        .nav-link:hover { background: #FFF1F2; color: var(--js-theme); }
+        .nav-link.active { background: var(--js-gradient); color: white; }
 
         .main-container { flex: 1; padding: 40px; max-width: 1000px; margin: 0 auto; width: 100%; }
         .profile-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
-        .profile-banner { background: var(--js-theme); height: 100px; }
+        .profile-banner { background: var(--js-gradient); height: 100px; }
         .profile-header { padding: 0 40px 30px; margin-top: -50px; text-align: center; border-bottom: 1px solid #F1F5F9; }
         .profile-avatar { width: 100px; height: 100px; border-radius: 50%; border: 5px solid white; background: white; margin: 0 auto 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         
@@ -129,7 +130,7 @@ try {
     <div class="admin-wrapper">
         <aside class="sidebar">
             <div class="sidebar-profile">
-                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($nombre_admin); ?>&background=<?php echo ($tipo_admin === 'alumnos') ? '3B82F6' : 'E60013'; ?>&color=fff" alt="User">
+                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($nombre_admin); ?>&background=E60013&color=fff" alt="User">
                 <h3><?php echo htmlspecialchars($nombre_admin); ?></h3>
                 <small style="color: var(--text-muted);"><?php echo ($tipo_admin === 'alumnos') ? 'Servicios Escolares' : 'Administrador'; ?></small>
             </div>
