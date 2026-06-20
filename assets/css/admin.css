@@ -1,0 +1,263 @@
+/* --------------------------------------------------
+   ESTILOS FINAL - DISEÑO EXACTO "PANEL VINCULACIÓN"
+   (assets/css/admin.css)
+   --------------------------------------------------
+*/
+
+:root {
+    --color-rojo-js: #D9232E;       
+    --color-texto-oscuro: #333333;      
+    --color-fondo-gris: #F4F6F9;   
+    --color-header-tarjeta: #F8F9FA; /* Gris muy suave para el nombre */
+    --color-borde: #E2E8F0;
+    --color-muted: #64748b;
+    --shadow-suave: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+body {
+    background-color: var(--color-fondo-gris);
+    font-family: 'Roboto', sans-serif;
+    color: var(--color-texto-oscuro);
+    margin: 0;
+}
+
+/* --- Estructura Principal --- */
+.dashboard-layout {
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 260px;
+    background: white;
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-suave);
+    flex-shrink: 0;
+}
+.sidebar h3 {
+    font-size: 1rem;
+    color: var(--color-texto-oscuro);
+    border-bottom: 2px solid var(--color-rojo-js);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: var(--color-muted);
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s;
+    margin-bottom: 5px;
+}
+.sidebar li a:hover {
+    background-color: #FEF2F2;
+    color: var(--color-rojo-js);
+}
+.sidebar li a.active {
+    background-color: var(--color-rojo-js);
+    color: white;
+    box-shadow: 0 4px 10px rgba(217, 35, 46, 0.2);
+}
+
+/* --- Contenido Principal --- */
+.main-content {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.page-title h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    color: #1e293b;
+}
+.page-description {
+    color: var(--color-muted);
+    margin-bottom: 30px;
+}
+
+/* --- TARJETA DE ALUMNO (ESTILO EXACTO IMAGEN 2) --- */
+.student-card {
+    background: white;
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    overflow: hidden; /* Clave para que el header no se salga */
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* 1. Encabezado Gris (Nombre) */
+.student-card-header {
+    background-color: var(--color-header-tarjeta);
+    padding: 12px 25px;
+    border-bottom: 1px solid var(--color-borde);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #1e293b;
+}
+
+/* 2. Cuerpo Blanco (Datos y Botones) */
+.student-card-body {
+    padding: 20px 25px;
+    display: flex; /* Flexbox para poner datos a la izq y botones a la der */
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Grid de Iconos + Textos */
+.student-data-row {
+    display: flex;
+    gap: 40px; /* Separación entre columnas (Matrícula | Carrera | Email) */
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.data-item {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Separación entre icono y texto */
+}
+
+/* Cuadrito gris del icono */
+.icon-box {
+    width: 38px;
+    height: 38px;
+    background-color: #E2E8F0; /* Gris del icono */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+    font-size: 1rem;
+}
+
+.data-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+.label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-texto-oscuro);
+}
+
+/* Botones alineados a la derecha */
+.student-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-outline-cv {
+    border: 1px solid #CBD5E1;
+    background: white;
+    color: var(--color-texto-oscuro);
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+.btn-outline-cv:hover {
+    background-color: #F1F5F9;
+    border-color: #94A3B8;
+}
+
+.btn-solid-profile {
+    background-color: var(--color-rojo-js);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    transition: background 0.2s;
+}
+.btn-solid-profile:hover {
+    background-color: #b91c26;
+}
+
+/* --- Buscador Grande --- */
+.search-bar-container {
+    background: white;
+    padding: 0;
+    margin-bottom: 30px;
+}
+.search-input-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+.search-input-wrapper i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94A3B8;
+}
+.input-big {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+.filter-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+.select-big {
+    padding: 10px;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    min-width: 250px;
+}
+.btn-search-red {
+    background-color: var(--color-rojo-js);
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .student-card-body { flex-direction: column; align-items: flex-start; }
+    .student-data-row { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .student-actions { width: 100%; justify-content: flex-end; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #eee; }
+}

@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* =========================================
+   1. PREMIUM COLOR PALETTE & VARIABLES
+   ========================================= */
+:root {
+  /* Justo Sierra Brand Colors */
+  --js-red: #E60013;
+  --js-red-dark: #B3000E;
+  --js-red-light: #FF3347;
+  
+  --js-gold: #FCC800;
+  --js-gold-dark: #D4A800;
+  --js-gold-light: #FFEB99;
+
+  /* Premium Neutrals */
+  --premium-dark: #1A1A1A;
+  --premium-darker: #121212;
+  --premium-gray: #4A4A4A;
+  --premium-light-gray: #E0E0E0;
+  --premium-surface: #FFFFFF;
+  --premium-background: #F8F9FA;
+
+  /* Typography */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+
+  /* Shadows & Effects */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(230, 0, 19, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================
+   2. GLOBAL STYLES & RESET
+   ========================================= */
+body {
+  font-family: var(--font-body) !important;
+  background-color: var(--premium-background) !important;
+  color: var(--premium-dark) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .title-login {
+  font-family: var(--font-heading) !important;
+  font-weight: 700 !important;
+  color: var(--premium-dark) !important;
+  letter-spacing: -0.5px;
+}
+
+/* =========================================
+   3. MATERIALIZE OVERRIDES (PREMIUM FEEL)
+   ========================================= */
+
+/* Cards */
+.card {
+  background: var(--premium-surface) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid rgba(230, 0, 19, 0.05);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(230, 0, 19, 0.12) !important;
+}
+
+/* Inputs */
+.input-field input[type=text],
+.input-field input[type=password],
+.input-field input[type=email] {
+  border-bottom: 2px solid var(--premium-light-gray) !important;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast) !important;
+  font-family: var(--font-body);
+}
+
+.input-field input[type=text]:focus,
+.input-field input[type=password]:focus,
+.input-field input[type=email]:focus {
+  border-bottom: 2px solid var(--js-red) !important;
+  box-shadow: 0 1px 0 0 var(--js-red) !important;
+}
+
+.input-field label {
+  color: var(--premium-gray) !important;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+.input-field input:focus + label {
+  color: var(--js-red) !important;
+}
+
+/* Buttons */
+.btn, .btn-large {
+  font-family: var(--font-heading) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px;
+  border-radius: 30px !important;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--js-red), var(--js-gold)) !important;
+  box-shadow: 0 4px 15px rgba(230, 0, 19, 0.3) !important;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+  border: none;
+}
+
+.btn:hover, .btn-large:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 0, 19, 0.4) !important;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* =========================================
+   4. MICROANIMATIONS
+   ========================================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate.fadeRight, .card {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+/* Brand Logo microanimation */
+.brand-logo {
+  transition: transform var(--transition-smooth) !important;
+}
+
+.brand-logo:hover {
+  transform: scale(1.05) rotate(-2deg) !important;
+}
+
+/* Link transitions */
+a {
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+a:hover {
+  color: var(--js-red-dark) !important;
+  opacity: 0.8;
+}
+
+/* =========================================
+   5. LOGIN SPECIFIC FIXES
+   ========================================= */
+.bg-login {
+  background: linear-gradient(135deg, var(--premium-background) 0%, #E8ECEF 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-login {
+  font-size: 1.8rem !important;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  background: linear-gradient(135deg, var(--js-red), var(--js-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================================
+   6. DASHBOARDS (STUDENTS & COMPANIES)
+   ========================================= */
+.job-card {
+  border-radius: 20px !important;
+  box-shadow: var(--shadow-md) !important;
+  border: 1px solid rgba(230, 0, 19, 0.05) !important;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth) !important;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.job-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.search-bar-container {
+  background-color: var(--premium-surface) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+.boton-principal {
+  background: linear-gradient(135deg, var(--js-red), var(--js-gold)) !important;
+  border-radius: 30px !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(230, 0, 19, 0.3) !important;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 600 !important;
+}
+
+.boton-principal:hover {
+  transform: scale(1.02) translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(230, 0, 19, 0.4) !important;
+}
+
+.boton-principal-sm {
+  background: linear-gradient(135deg, var(--js-red), var(--js-gold)) !important;
+  border-radius: 20px !important;
+  border: none !important;
+  box-shadow: 0 2px 10px rgba(230, 0, 19, 0.2) !important;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 600 !important;
+}
+
+.boton-principal-sm:hover {
+  transform: scale(1.05) translateY(-1px) !important;
+  box-shadow: 0 4px 15px rgba(230, 0, 19, 0.3) !important;
+}
+
+.welcome-hero {
+  background-color: var(--premium-background) !important;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
