@@ -229,9 +229,9 @@
                                 <td data-label="Fecha"><?php echo date('d/m/Y', strtotime($p['fecha_postulacion'])); ?></td>
                                 <td data-label="Estado">
                                     <?php
-                                        $estado_raw = strtolower($p['estado_postulacion']);
+                                        $estado_raw = trim(strtolower($p['estado_postulacion']));
                                         // Convertir guiones bajos a espacios para mostrar
-                                        if ($estado_raw == 'en_proceso') {
+                                        if ($estado_raw === 'en_proceso') {
                                             $estado_display = 'En proceso';
                                         } else {
                                             $estado_display = ucfirst($estado_raw);
@@ -246,6 +246,12 @@
                                        class="btn-table-action">
                                         <i class="fas fa-search"></i> Ver Detalle
                                     </a>
+                                    <?php if (in_array($estado_raw, ['aceptada', 'aceptado', 'en_proceso'])): ?>
+                                    <a href="servicio_social.php?id_postulacion=<?php echo $p['id_postulacion']; ?>"
+                                       class="btn-table-action" style="background-color: #f39c12; margin-top: 5px;">
+                                        <i class="fas fa-file-alt"></i> Trámite Servicio Social
+                                    </a>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

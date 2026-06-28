@@ -11,6 +11,19 @@
     
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/index.css"> 
+    <style>
+        .form-card {
+            background-color: #ffffff !important; /* Forzar fondo blanco */
+        }
+        .form-card input {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            border: 1px solid #cccccc !important;
+        }
+        .form-card label, .form-card h1, .form-card p, .form-card a {
+            color: #1a1a1a !important; /* Forzar texto oscuro */
+        }
+    </style>
 </head>
 <body class="centrado">
 

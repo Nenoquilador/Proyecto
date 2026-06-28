@@ -80,6 +80,15 @@ require_once __DIR__ . '/../layouts/alumnos/header.php';
                     </div>
                     <span class="arrow">Ir a carga <i class="fas fa-arrow-right"></i></span>
                 </a>
+
+                <a href="tramites_ss.php" class="action-card" style="border-left: 4px solid var(--color-js-rojo-principal);">
+                    <div class="action-icon" style="background: rgba(230,0,19,0.1); color: var(--color-js-rojo-principal);"><i class="fas fa-file-signature"></i></div>
+                    <div>
+                        <h4>Validar Servicio Social</h4>
+                        <p>Valida los pagos de los alumnos para liberar sus documentos oficiales.</p>
+                    </div>
+                    <span class="arrow">Ir a trámites <i class="fas fa-arrow-right"></i></span>
+                </a>
             </div>
 
 <?php require_once __DIR__ . '/../layouts/alumnos/footer.php'; ?>
